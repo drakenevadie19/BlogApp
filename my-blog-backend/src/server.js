@@ -59,13 +59,16 @@ import express from 'express';
 let articlesInfo = [
     {
         name: 'learn-react',
-        upvotes: 0
+        upvotes: 0,
+        comments: [],
     },{
         name: 'learn-node',
-        upvotes: 0
+        upvotes: 0,
+        comments: [],
     },{
         name: 'mongodb',
-        upvotes: 0
+        upvotes: 0,
+        comments: [],
     },
 ]
 
@@ -95,10 +98,6 @@ app.put('/api/articles/:name/upvote', (req, res) => {
     }
 })
 
-app.listen(8000, () => {
-    console.log("Server is listening on port 8000")
-})
-
 //after this, we can use nodemon package, which can fix our problem: we have to restart our server everytime we make changes
 // installed it by npm install nodemon --save-dev
 // we add the --save-dev flag to the command, which will install this as a dev dependency, which basically means that it will be put 
@@ -112,3 +111,36 @@ app.listen(8000, () => {
 //  => From now, we only need to run the command: npm run dev
 //Futhermore, we don't really need "npx" when it is in a package.JSON script, so we will make change: 
 //          "dev": "nodemon src/server.js"
+
+//Let's adding function to allow users to add comments to our article 
+// inside the endpoint that we create for our adding comments, we basically just going to take any information that we get from our user, such as 
+//  comment text and create a new object that we will insert into this comments array
+//This adding comment endpoint should be POST, because we are adding new comment to the comments 
+//This comment is to add a new comment to ${name} article
+app.post('/api/articles/:name/comments', (req, res) => {
+    //We have to decide what format the comments are going to be specified when they are sent to the server as a request
+    // We want the client side (FE) to specify both of the Text of the new comment that they are adding and the Name of the commentor
+    // => POST query's body will has 2 properties: 
+    //      1. "postedBy": name of commentor
+    //      2. "text": comment
+    const {name} = req.params;
+    const {postedBy, text} = req.body;
+    
+    //Since we have the properties from the request body, we will insert those into the comments array for the corresponding articles
+    const article = articlesInfo.find(article => article.name === name);
+    if (article) {
+        article.comments.push( {postedBy, text});
+        //we need to send back a response after adding a new comment to this article
+        // we will send the entire array of comments for that article, so that we can see whether they are successfully getting added or not?
+        res.send(article.comments);
+    } else {
+        res.send(`The ${name} article does not exists!!`);
+    }
+    //when our server is restarted, all of our data (comments) will be reseted, since old data is only stored in fake in-memory database (comments array)
+})
+
+app.listen(8000, () => {
+    console.log("Server is listening on port 8000")
+})
+
+
