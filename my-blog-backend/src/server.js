@@ -88,14 +88,27 @@ app.put('/api/articles/:name/upvote', (req, res) => {
     if (article) {
         article.upvotes += 1;
         //Announce for us how many upvote that article currently have
-        res.send(`The $${name} article now has ${article.upvotes} upvotes`);
+        res.send(`The ${name} article now has ${article.upvotes} upvotes!!`);
     } else {
         //In case that article does not exist, we need to annouce to user that this article does not exist
         res.send(`The ${name} article does not exists`);
     }
-    
 })
 
 app.listen(8000, () => {
     console.log("Server is listening on port 8000")
 })
+
+//after this, we can use nodemon package, which can fix our problem: we have to restart our server everytime we make changes
+// installed it by npm install nodemon --save-dev
+// we add the --save-dev flag to the command, which will install this as a dev dependency, which basically means that it will be put 
+//  in separate part of our package.JSON along with the dev dependencies instead of actual production dependencies
+// After installing, we can run our server by using npx nodemon
+//   => it will continuously run our server and EVERYTIME WE MAKE CHANGES TO SERVER.JS file, it will automatically refresh and restart our server
+
+//Since the command npx nodemon src/server.js is kinda long, we can make a shortcut to this command: 
+// In package.json file, in "script" category, we add one more line: "dev": "npx nodemon src/server.js",
+//  => This line will create a short cut to this commmand
+//  => From now, we only need to run the command: npm run dev
+//Futhermore, we don't really need "npx" when it is in a package.JSON script, so we will make change: 
+//          "dev": "nodemon src/server.js"
