@@ -1,4 +1,5 @@
 // import express from 'express';
+import { MongoClient } from 'mongodb';
 
 // const app = express();
 // //MIDDLEware
@@ -27,24 +28,46 @@ import express from 'express';
 
 //temporaty fake db, which contain fake upvote 
 // Later, we will replace this with MongoDB
-let articlesInfo = [
-    {
-        name: 'learn-react',
-        upvotes: 0,
-        comments: [],
-    },{
-        name: 'learn-node',
-        upvotes: 0,
-        comments: [],
-    },{
-        name: 'mongodb',
-        upvotes: 0,
-        comments: [],
-    },
-]
+// let articlesInfo = [
+//     {
+//         name: 'learn-react',
+//         upvotes: 0,
+//         comments: [],
+//     },{
+//         name: 'learn-node',
+//         upvotes: 0,
+//         comments: [],
+//     },{
+//         name: 'mongodb',
+//         upvotes: 0,
+//         comments: [],
+//     },
+// ]
+// Since we could connect the mongoDB, we can remove this.
 
 const app = express();
 app.use(express.json())
+
+// GET endpoint: for user to load the information -> Can see the upvotes, comments
+app.get('/api/articles/:name', async (req, res) => {
+    //Call backfunction => get the current value of this-name-URL-parameter 
+    //  => use it to query MongoDB => get the infomation for that article
+    const { name } = req.params;
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-blog-db');
+
+    const article = await db.collection('articles').findOne( { name });
+
+    if (article) {
+        res.json(article);
+    } else {
+        res.sendStatus(404);
+    };
+    
+})
+
 
 //name here is the name of the article we want to upvote
 app.put('/api/articles/:name/upvote', (req, res) => {
