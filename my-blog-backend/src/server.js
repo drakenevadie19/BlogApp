@@ -1,5 +1,5 @@
 // import express from 'express';
-import { MongoClient } from 'mongodb';
+
 
 // const app = express();
 // //MIDDLEware
@@ -24,7 +24,6 @@ import { MongoClient } from 'mongodb';
 // })
 
 //What we want to do here is that users can upvote our articles to help our articles is the most popular/helpful
-import express from 'express';
 
 //temporaty fake db, which contain fake upvote 
 // Later, we will replace this with MongoDB
@@ -45,6 +44,9 @@ import express from 'express';
 // ]
 // Since we could connect the mongoDB, we can remove this.
 
+import express from 'express';
+import { db, connectToDB } from './db.js';
+
 const app = express();
 app.use(express.json())
 
@@ -53,10 +55,6 @@ app.get('/api/articles/:name', async (req, res) => {
     //Call backfunction => get the current value of this-name-URL-parameter 
     //  => use it to query MongoDB => get the infomation for that article
     const { name } = req.params;
-    const client = new MongoClient('mongodb://127.0.0.1:27017');
-    await client.connect();
-
-    const db = client.db('react-blog-db');
 
     const article = await db.collection('articles').findOne( { name });
 
@@ -101,11 +99,6 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
     //  and then we will increse value of upvotes of that article's object on our DB
     const { name } = req.params;
 
-    // 27017 is default port for MongoDB
-    const client = new MongoClient('mongodb://127.0.0.1:27017');
-    await client.connect();
-
-    const db = client.db('react-blog-db');
     await db.collection('articles').updateOne({ name }, {
         $inc: { upvotes: 1 },
     })
@@ -168,12 +161,6 @@ app.post('/api/articles/:name/comments', async (req, res) => {
     const {name} = req.params;
     const {postedBy, text} = req.body;
     
-    
-    // 27017 is default port for MongoDB
-    const client = new MongoClient('mongodb://127.0.0.1:27017');
-    await client.connect();
-
-    const db = client.db('react-blog-db');
     //make a query to DB for adding a new comment with postedBy and text for comments
     await db.collection('articles').updateOne({ name }, {
         $push: { comments: { postedBy, text } },
@@ -187,10 +174,11 @@ app.post('/api/articles/:name/comments', async (req, res) => {
         res.send(`The ${name} article does not exists!!`);
     }
     //when our server is restarted, all of our data (comments) will be reseted, since old data is only stored in fake in-memory database (comments array)
+});
+
+connectToDB(() => {
+    console.log("Successfully connected to DB");
+    app.listen(8000, () => {
+        console.log("Server is listening on port 8000")
+    })
 })
-
-app.listen(8000, () => {
-    console.log("Server is listening on port 8000")
-})
-
-
