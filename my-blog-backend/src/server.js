@@ -70,7 +70,29 @@ app.get('/api/articles/:name', async (req, res) => {
 
 
 //name here is the name of the article we want to upvote
-app.put('/api/articles/:name/upvote', (req, res) => {
+// app.put('/api/articles/:name/upvote', (req, res) => {
+//     //logic for upvote article
+//     // we need to define fake db, which contain how many upvote each articles has? 
+//     // Later, we will replace this with MongoDB
+
+//     // Based on the value of URL param, we need to know what article we need to upvote, 
+//     //  and then we will increse value of upvotes of that article's object on our DB
+//     const { name } = req.params;
+
+//     //find the corresponding article with that name
+//     const article = articlesInfo.find(article => article.name === name);
+//     //make sure that article exists
+//     if (article) {
+//         article.upvotes += 1;
+//         //Announce for us how many upvote that article currently have
+//         res.send(`The ${name} article now has ${article.upvotes} upvotes!!`);
+//     } else {
+//         //In case that article does not exist, we need to annouce to user that this article does not exist
+//         res.send(`The ${name} article does not exists`);
+//     }
+// })
+
+app.put('/api/articles/:name/upvote', async (req, res) => {
     //logic for upvote article
     // we need to define fake db, which contain how many upvote each articles has? 
     // Later, we will replace this with MongoDB
@@ -79,8 +101,17 @@ app.put('/api/articles/:name/upvote', (req, res) => {
     //  and then we will increse value of upvotes of that article's object on our DB
     const { name } = req.params;
 
-    //find the corresponding article with that name
-    const article = articlesInfo.find(article => article.name === name);
+    // 27017 is default port for MongoDB
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-blog-db');
+    await db.collection('articles').updateOne({ name }, {
+        $inc: { upvotes: 1 },
+    })
+
+    const article = await db.collection('articles').findOne( { name });
+
     //make sure that article exists
     if (article) {
         article.upvotes += 1;
