@@ -29,3 +29,7 @@ function App() {
 }
 
 export default App;
+
+// make GET request
+const response = await axios.get('http://localhost:8000/api/articles/learn-react')
+const data = response.data;
