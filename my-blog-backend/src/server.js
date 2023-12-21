@@ -114,7 +114,6 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
 
     //make sure that article exists
     if (article) {
-        article.upvotes += 1;
         //Announce for us how many upvote that article currently have
         res.send(`The ${name} article now has ${article.upvotes} upvotes!!`);
     } else {
@@ -142,21 +141,47 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
 //  comment text and create a new object that we will insert into this comments array
 //This adding comment endpoint should be POST, because we are adding new comment to the comments 
 //This comment is to add a new comment to ${name} article
-app.post('/api/articles/:name/comments', (req, res) => {
-    //We have to decide what format the comments are going to be specified when they are sent to the server as a request
-    // We want the client side (FE) to specify both of the Text of the new comment that they are adding and the Name of the commentor
-    // => POST query's body will has 2 properties: 
-    //      1. "postedBy": name of commentor
-    //      2. "text": comment
+// app.post('/api/articles/:name/comments', (req, res) => {
+//     //We have to decide what format the comments are going to be specified when they are sent to the server as a request
+//     // We want the client side (FE) to specify both of the Text of the new comment that they are adding and the Name of the commentor
+//     // => POST query's body will has 2 properties: 
+//     //      1. "postedBy": name of commentor
+//     //      2. "text": comment
+//     const {name} = req.params;
+//     const {postedBy, text} = req.body;
+    
+//     //Since we have the properties from the request body, we will insert those into the comments array for the corresponding articles
+//     const article = articlesInfo.find(article => article.name === name);
+//     if (article) {
+//         article.comments.push( {postedBy, text});
+//         //we need to send back a response after adding a new comment to this article
+//         // we will send the entire array of comments for that article, so that we can see whether they are successfully getting added or not?
+//         res.send(article.comments);
+//     } else {
+//         res.send(`The ${name} article does not exists!!`);
+//     }
+//     //when our server is restarted, all of our data (comments) will be reseted, since old data is only stored in fake in-memory database (comments array)
+// })
+
+// PUT endpoint for comments
+app.post('/api/articles/:name/comments', async (req, res) => {
     const {name} = req.params;
     const {postedBy, text} = req.body;
     
-    //Since we have the properties from the request body, we will insert those into the comments array for the corresponding articles
-    const article = articlesInfo.find(article => article.name === name);
+    
+    // 27017 is default port for MongoDB
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-blog-db');
+    //make a query to DB for adding a new comment with postedBy and text for comments
+    await db.collection('articles').updateOne({ name }, {
+        $push: { comments: { postedBy, text } },
+    });
+
+    const article = await db.collection('articles').findOne({ name })
+
     if (article) {
-        article.comments.push( {postedBy, text});
-        //we need to send back a response after adding a new comment to this article
-        // we will send the entire array of comments for that article, so that we can see whether they are successfully getting added or not?
         res.send(article.comments);
     } else {
         res.send(`The ${name} article does not exists!!`);
