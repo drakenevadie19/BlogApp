@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
+import { useState } from 'react';
 import articles from "./article-content";
 import NotFoundPage from "./not-found-page";
 
 const ArticlePage = () => {
+    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []});
+
     //get the params from URL params
     const {articleId} = useParams();
     //find article from articles array that have the name match articleId
