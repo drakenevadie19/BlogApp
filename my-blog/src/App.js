@@ -1,7 +1,6 @@
 import './App.css';
 
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
-import axios from 'axios';
 
 import Navbar from './nav-bar';
 import HomePage from './pages/home-page';
