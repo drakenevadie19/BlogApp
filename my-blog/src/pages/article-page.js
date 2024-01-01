@@ -30,6 +30,14 @@ const ArticlePage = () => {
     //  => Display nothing on the page 
     const article = articles.find(article => article.name === articleId);
 
+    //Create a function to request to server for upvote
+    const addUpvote = async () => {
+        // Create a PUT request here
+        const response = await axios.put(`/api/articles/${articleId}/upvote`);
+        const updatedArticle = response.data;
+        setArticleInfo(updatedArticle);
+    }
+
     //if article is undefined, display Not Found Page
     if (!article) {
         return <NotFoundPage />
@@ -39,7 +47,10 @@ const ArticlePage = () => {
     return (
         <>
             <h1>{article.title}</h1>
-            <p>This article has {articleInfo.upvotes} upvote(s)</p>
+            <div className="upvotes-section">
+                <button onClick={addUpvote}>Upvote</button>
+                <p>This article has {articleInfo.upvotes} upvote(s)</p>
+            </div>
             {article.content.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
             ))}

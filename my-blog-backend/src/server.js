@@ -39,7 +39,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
     //make sure that article exists
     if (article) {
         //Announce for us how many upvote that article currently have
-        res.send(`The ${name} article now has ${article.upvotes} upvotes!!`);
+        res.json(article);
     } else {
         //In case that article does not exist, we need to annouce to user that this article does not exist
         res.send(`The ${name} article does not exists`);
