@@ -1,6 +1,7 @@
 import './App.css';
 
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
+import axios from 'axios';
 
 import Navbar from './nav-bar';
 import HomePage from './pages/home-page';
@@ -31,5 +32,6 @@ function App() {
 export default App;
 
 // make GET request
-const response = await axios.get('http://localhost:8000/api/articles/learn-react')
-const data = response.data;
+// const response = await axios.get('http://localhost:8000/api/articles/learn-react');
+
+// const data = response.data;

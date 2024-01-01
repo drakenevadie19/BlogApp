@@ -1,10 +1,23 @@
 import { useParams } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import articles from "./article-content";
 import NotFoundPage from "./not-found-page";
 
 const ArticlePage = () => {
+    //article information state for specific articles
     const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []});
+
+    //Logic to process when fetching #upvotes and comments from server
+    useEffect(() => {
+        //What we will do with data when finishing querrying froms server
+        // We will use Axios to fetch data from server
+        // we will generate a random number of upvote => When we do this, the number of upvotes goes crazy 
+        //  => Because useEffect hook runs not only when the component first mounts, but also runs whenever the component updates
+        //     and everytime we generate a number (makes changes to components), this action is also caught => number randomize infinitively
+        setArticleInfo({ upvotes: Math.ceil(Math.random() * 10), comments: []})
+    }, []) 
+    // adding empty bracket as second argument => logical function will only be run when the page first loaded
+    // if there is avariable inside the array, whenever the value of the variable is changed, the logical function will also be executed AGAIN
 
     //get the params from URL params
     const {articleId} = useParams();
@@ -23,6 +36,7 @@ const ArticlePage = () => {
     return (
         <>
             <h1>{article.title}</h1>
+            <p>This article has {articleInfo.upvotes} upvote(s)</p>
             {article.content.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
             ))}
