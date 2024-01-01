@@ -56,6 +56,7 @@ const ArticlePage = () => {
             {article.content.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
             ))}
+            
             <CommentsForm articleName={articleId} onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)} />
             <CommentsList comments={articleInfo.comments} />
 

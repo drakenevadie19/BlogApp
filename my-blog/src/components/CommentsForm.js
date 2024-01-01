@@ -13,6 +13,8 @@ const CommentsForm = ({ articleName, onArticleUpdated }) => {
         });
         const updatedArticleComment = response.data;
 
+        //Reset name, commentText to empty 
+        // this function is passed from article-page.js
         onArticleUpdated(updatedArticleComment);
         setName('');
         setCommentText('');
