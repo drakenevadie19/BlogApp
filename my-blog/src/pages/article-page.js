@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import articles from "./article-content";
 import NotFoundPage from "./not-found-page";
 
+import CommentsList  from "../components/CommentsList";
 import axios from "axios";
 
 const ArticlePage = () => {
@@ -42,6 +43,7 @@ const ArticlePage = () => {
             {article.content.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
             ))}
+            <CommentsList comments={articleInfo.comments} />
         </>
         
     )
