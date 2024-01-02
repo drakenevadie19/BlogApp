@@ -8,61 +8,59 @@ import CommentsForm from "../components/CommentsForm";
 
 import axios from "axios";
 
+import useUser from "../hooks/useUsers";
+
+
 const ArticlePage = () => {
-    //article information state for specific articles
-    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []});
-    //get the params from URL params
-    const {articleId} = useParams();
+    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: [] });
+    const { articleId } = useParams();
 
-    useEffect(() => { // not allowed to push an asynchronous function to useEffect
+    const { user, isLoading } = useUser();
+
+    useEffect(() => {
         const loadArticleInfo = async () => {
-            // use axios.get function to get all article information from database 
             const response = await axios.get(`/api/articles/${articleId}`);
-            const newarticleInfo = response.data;
-            setArticleInfo(newarticleInfo);
+            const newArticleInfo = response.data;
+            setArticleInfo(newArticleInfo);
         }
-        
-        loadArticleInfo();
-    }, []) 
 
-    
-    //find article from articles array that have the name match articleId
-    // => If found the article that match the articleId, we can see the article displayed in the page
-    // => If not found the article that match the articleId, article variable will be undefined 
-    //  => Display nothing on the page 
+        loadArticleInfo();
+    }, []);
+
     const article = articles.find(article => article.name === articleId);
 
-    //Create a function to request to server for upvote
     const addUpvote = async () => {
-        // Create a PUT request here
         const response = await axios.put(`/api/articles/${articleId}/upvote`);
         const updatedArticle = response.data;
         setArticleInfo(updatedArticle);
     }
 
-    //if article is undefined, display Not Found Page
     if (!article) {
         return <NotFoundPage />
     }
 
-    //else display content like normal
+    console.log(user);
+    console.log(isLoading);
     return (
         <>
-            <h1>{article.title}</h1>
-            <div className="upvotes-section">
-                <button onClick={addUpvote}>Upvote</button>
-                <p>This article has {articleInfo.upvotes} upvote(s)</p>
-            </div>
-            {article.content.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-            ))}
-            
-            <CommentsForm articleName={articleId} onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)} />
-            <CommentsList comments={articleInfo.comments} />
-
+        <h1>{article.title}</h1>
+        <div className="upvotes-section">
+            {user != null
+                ? <button onClick={addUpvote}>Upvote</button>
+                : <button>Log in to upvote</button>}
+            <p>This article has {articleInfo.upvotes} upvote(s)</p>
+        </div>
+        {article.content.map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+        ))}
+        {user != null
+            ? <CommentsForm
+                articleName={articleId}
+                onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)} />
+            : <button>Log in to add a comment</button>}
+        <CommentsList comments={articleInfo.comments} />
         </>
-        
-    )
+    );
 }
 
 export default ArticlePage;

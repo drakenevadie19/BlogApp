@@ -44,4 +44,162 @@ When we first use axios, we got problem because our FE and BE do not run on the 
 => Then we will restart the FE 
 Since we define the proxy for link to server, we can do ike this: 
 const response = await axios.get(`/api/articles/${articleId}`);
+
+
+
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import articles from "./article-content";
+import NotFoundPage from "./not-found-page";
+
+import CommentsList  from "../components/CommentsList";
+import CommentsForm from "../components/CommentsForm";
+
+import axios from "axios";
+
+import useUser from "../hooks/useUsers";
+
+
+const ArticlePage = () => {
+    //article information state for specific articles
+    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []});
+    //get the params from URL params
+    const {articleId} = useParams();
+
+    const { user, isLoading } = useUser(); // => now we have access to states => we can hide certain things down in JSX
+
+    useEffect(() => { // not allowed to push an asynchronous function to useEffect
+        const loadArticleInfo = async () => {
+            // use axios.get function to get all article information from database 
+            const response = await axios.get(`/api/articles/${articleId}`);
+            const newarticleInfo = response.data;
+            setArticleInfo(newarticleInfo);
+        }
+        
+        loadArticleInfo();
+    }, []);
+
+    
+    //find article from articles array that have the name match articleId
+    // => If found the article that match the articleId, we can see the article displayed in the page
+    // => If not found the article that match the articleId, article variable will be undefined 
+    //  => Display nothing on the page 
+    const article = articles.find(article => article.name === articleId);
+
+    //Create a function to request to server for upvote
+    const addUpvote = async () => {
+        // Create a PUT request here
+        const response = await axios.put(`/api/articles/${articleId}/upvote`);
+        const updatedArticle = response.data;
+        setArticleInfo(updatedArticle);
+    }
+
+    //if article is undefined, display Not Found Page
+    if (!article) {
+        return <NotFoundPage />
+    }
+
+    //else display content like normal
+    return (
+        <>
+            <h1>{article.title}</h1>
+            <div className="upvotes-section">
+                {/* If user did not log in, we will display a button like "Login to Upvote" */}
+                {user 
+                    ? <button onClick={addUpvote}>Upvote</button> 
+                    : <button>Login to Upvote</button>}
+                <p>This article has {articleInfo.upvotes} upvote(s)</p>
+            </div>
+            {article.content.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+            ))};
+
+            {/* We will also hide comment form, if user did not log in => display a button says "Login to Comment" */}
+            {user 
+                ? <CommentsForm articleName={articleId} onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)} />
+                : <button>Login to add a comment</button>}
+            <CommentsList comments={articleInfo.comments} />
+
+        </>
+        
+    )
+}
+
+export default ArticlePage; 
+
+
+
+const LoginPage = () => {
+    //create an email and password states
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    // When user input a non-existing email, or incorrect password, we will display an error
+    //  => this state will be used to track for errors.
+    const [error, setError] = useState('');
+
+    const navigate = useNavigate();
  
+    //Login Function => Call when click the log In button 
+    const logIn = async () => {
+        // call signInWithEmailAndPassword function with email and password 
+        // For Firenbase function, first arfument is Firebase Auth reference => getAuth()
+        //  next arguments are email and passwords
+        // Nest it to a try catch => whenever there are errors with logging in, display error
+        try {
+            await signInWithEmailAndPassword(getAuth(), email, password);
+            // If logging in is successful, we will route to the home page
+            navigate('/articles');
+        } catch (e) {
+            setError(e.message);
+        }
+    }
+
+    return (
+        <>
+            <h1>Log In</h1>
+            {/* if error exists, then we will display {error}  */}
+            {error && <p className="error">{error}</p>}
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Your Email Address" /> 
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Your Password" />
+            {/* 
+                We will use Firebase Auth here 
+                => import 2 things 
+            
+            */}
+            <button onClick={logIn}>Log In</button> 
+            <p>Does not have account yet?</p><Link to="/create-account">Create One</Link>
+        </>
+    )
+}
+
+export default LoginPage;
+
+
+import { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const useUser = () => {
+    const [user, setUser] = useState(null);
+    // when a component (article-page.js) call for useUsers hook, the 
+    const [isLoading, setIsLoading] = useState(true);
+
+    //Know what current user is 
+    // When an user change their auth state (logged in, logged out, create an account), the callback function will be called
+    useEffect(() => {
+        // if user = a Firebase object, that mean the user is logged in 
+        // else if it is null => user is not logged in 
+        //  => This is what article-page looked for
+        const unsubscribe = onAuthStateChanged(getAuth(), user => {
+            setUser(user);
+            setIsLoading(false);
+        }); //second argument is call backfunction 
+
+        return unsubscribe;
+    });
+
+    // return both states user and isLoading, so that component can access to it. 
+    return { user, isLoading };
+}
+
+export default useUser;
