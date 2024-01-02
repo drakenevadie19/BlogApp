@@ -9,6 +9,9 @@ import ArticleListPage from './pages/article-list-page';
 import ArticlePage from './pages/article-page';
 import NotFoundPage from './pages/not-found-page';
 
+import CreateAccountPage from './pages/create-account-page';
+import LoginPage from './pages/login-page';
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +23,10 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/articles" element={<ArticleListPage />} />
             <Route path="/articles/:articleId" element={<ArticlePage />} />
+
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/create-account' element={<CreateAccountPage />} />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
