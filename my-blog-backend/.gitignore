@@ -1,4 +1,6 @@
 /node_modules
 /mongodb-data
 credentials.json
-previous.txt
+.previous.txt
+/build
+.env
