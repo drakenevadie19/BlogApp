@@ -106,3 +106,50 @@
 //     }
 //     //when our server is restarted, all of our data (comments) will be reseted, since old data is only stored in fake in-memory database (comments array)
 // })
+
+use key in credential.json in server.js to connect Server to Firebase Auth, but the server have higher permissions
+we need to install essential firebase package, name: firebase admin
+int BE directory: npm install firebase-admin
+Import firebase private key from credential.json file
+
+then load the credentials.json package
+const credentials = JSON.parse(
+    fs.readFileSync()
+)
+Then, we will use this to initialize this firebase admin package on our server, and connect it to our firebase project 
+this function will take a configuration object as parameter
+
+We need to protect our endpoints => user can not upvote without logging in 
+=> for each endpoint, checking whether the user making the request was logged in or not? 
+
+We will use authToken in axios request, which is how FE proves that the user is logged in 
+=> we use AuthToken in every request coming from our front end 
+
+This is express middleware
+app.use((req, res, next) => {
+    
+})
+next is a callback function, which will be called when we done with processing things in the middleware 
+and we will go to endppoint below
+
+fb=firebase
+
+GET endpoint: 
+- This endpoint does not take much protection because all clients should be able to access this data regardless whether they logged in or not 
+- However, we will include some of data to indicate whether user can upvote that article 
+=> We will then use this information to manage how many time an user can upvote, and if exceed allowed times, they can not upvote anymore
+=> We will get the ID of the user's information that we loaded before 
+
+PUT and POST endpoints: 
+- If the user is not already logged in, we dont want user to be able to make requests to either of these endpoint 
+- For the comment endpoint (POST): 
+    - Make sure that postedBy = user's email => instead of using postedBy, we will use user's email directly 
+        const {email} = req.user;
+    
+    //make a query to DB for adding a new comment with postedBy and text for comments
+    await db.collection('articles').updateOne({ name }, {
+        $push: { comments: { postedBy: email, text } },
+    });
+
+Then we will add authToken too 
+
