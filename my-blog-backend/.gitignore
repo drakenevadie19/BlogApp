@@ -1,0 +1,4 @@
+/node_modules
+/mongodb-data
+credentials.json
+previous.txt
