@@ -11,4 +11,4 @@
   - API: Restful API, Postman.
   - Axios: Connecting Front-end and Back-end sides.
   - Authentication: Firebase Auth.
-  - Google Cloud for hosting the whole website.
+  - Google Cloud Platform (GCP) for hosting the whole website.
