@@ -1,7 +1,8 @@
 # BlogApp
-- Architectured a responsive design web blog application user interface allowing users to save memories and articles using React, combined with pure HTML, CSS, and JavaScript.
-- Developed a back-end service using Node.js and Express.js to post and retrieve articles from the MongoDB database.
-- Managed users' account actions such as signing in, signing out, and states using Firebase Authentication.
+- Responsibility
+  - Architectured a responsive design web blog application user interface allowing users to save memories and articles using React, combined with pure HTML, CSS, and JavaScript.
+  - Developed a back-end service using Node.js and Express.js to post and retrieve articles from the MongoDB database.
+  - Managed users' account actions such as signing in, signing out, and states using Firebase Authentication.
 
 - Tech stacks:
   - Programming Language: JavaScript
