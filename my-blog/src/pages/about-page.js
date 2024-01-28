@@ -9,9 +9,10 @@ const AboutPage = () => {
                 <div id="my-image">
                     <div id="image-holder">
                         <img class="image" src="./author.jpg" alt="" />
+                        <button onClick={goTo} className="goto-portfolio-button">Go to my portfolio app</button>
                     </div>
                 </div>
-                <button onClick={goTo}>Go to my portfolio app</button>
+                
                 <div id="main-info">
                     <div id="education">
                         <h1>Education</h1>
