@@ -1,8 +1,17 @@
 const AboutPage = () => {
+    const goTo = () => {
+        // window.location.href="https://thanh-nguyen-do-portfolio.vercel.app/";
+        window.open("https://thanh-nguyen-do-portfolio.vercel.app/", "_blank")
+     }
     return (
         <>
             <div id="about-me-page">
-                <a href="https://thanh-nguyen-do-portfolio.vercel.app/" target="_blank" rel="noreferrer">Go to my portfolio app</a>
+                <div id="my-image">
+                    <div id="image-holder">
+                        <img class="image" src="./author.jpg" alt="" />
+                    </div>
+                </div>
+                <button onClick={goTo}>Go to my portfolio app</button>
                 <div id="main-info">
                     <div id="education">
                         <h1>Education</h1>
@@ -73,11 +82,7 @@ const AboutPage = () => {
                 </div>
             </div>
 
-            {/* <div id="my-image">
-                <div id="image-holder">
-                <img class="image" src="../../../../../../assets/aboutme-page/NguyenDT27_Đỗ Thành Nguyên.jpg" alt="">
-                </div>
-            </div> */}
+            
         </div>
     </>
     );

@@ -56,6 +56,16 @@ nav a:hover {
   padding-top: 72px;
 }
 
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+#image-holder {
+  width: 70%;
+  aspect-ratio: 3/4;
+}
+
 .article-list-item {
   text-decoration: none;
   color: black;
