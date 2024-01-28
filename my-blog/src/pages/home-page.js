@@ -2,28 +2,18 @@ const HomePage = () => (
     <>
     <h1>Hello, welcome to my blog!</h1>
     <p>
-        Welcome to my blog! Proin congue
-        ligula id risus posuere, vel eleifend ex egestas. Sed in turpis leo. 
-        Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-        non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-        eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-        sodales purus euismod.
+        Welcome to our innovative blog app designed with efficiency in mind! 
+        
     </p>
     <p>
-        Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
-        Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
-        nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
-        sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
-        interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
-        consequat quam. Vivamus accumsan dui in facilisis aliquet.,
-    </p>
-    <p>
-        Etiam nec lectus urna. Sed sodales ultrices dapibus. 
-        Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
-        nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
-        sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
-        interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
-        consequat quam. Vivamus accumsan dui in facilisis aliquet.,
+        Say goodbye to cluttered bookmarks and overloaded memory; 
+        our app is meticulously crafted to streamline your reading experience while conserving valuable device space. 
+        With a focus on memory optimization, our application not only saves your favorite articles but 
+        also ensures smooth performance, allowing you to effortlessly access and enjoy your curated content. 
+        Embrace a clutter-free digital space as you explore the vast world of knowledge, 
+        all conveniently stored within our memory-conscious blog app. Whether you're a passionate reader 
+        or a content creator, our app promises to be your go-to solution for organized and resource-efficient article management. 
+        Experience the future of digital content curation with our memory-saving blog app!
     </p>
     </>
 );
