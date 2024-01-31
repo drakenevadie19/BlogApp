@@ -40,6 +40,8 @@ app.use(async (req, res, next) => {
     next();
 });
 
+// app.get('/api/articles')
+
 app.get('/api/articles/:name', async (req, res) => {
     const { name } = req.params;
     const { uid } = req.user;

@@ -9,6 +9,8 @@ import ArticleListPage from './pages/article-list-page';
 import ArticlePage from './pages/article-page';
 import NotFoundPage from './pages/not-found-page';
 
+import FindArticles from './pages/find-articles-by-names';
+
 import CreateAccountPage from './pages/create-account-page';
 import LoginPage from './pages/login-page';
 
@@ -27,6 +29,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/create-account' element={<CreateAccountPage />} />
 
+            <Route path='/find-articles/:articleName' element={<FindArticles />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

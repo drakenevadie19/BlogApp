@@ -23,10 +23,10 @@ h3, h4 {
 
 nav {
   border-bottom: 4px solid black;
-  text-align: center;
-  position: fixed;
+  text-align:start;
+  /* position: fixed;
   top: 0;
-  width: 100%;
+  width: 100%; */
   background: white;
 }
 
@@ -55,9 +55,13 @@ nav a:hover {
 }
 
 #page-body {
-  max-width: 700px;
+  max-width: 1000px;
   margin: auto;
   padding-top: 72px;
+}
+
+.home-image-holder {
+  text-align: center;
 }
 
 .image {
@@ -66,8 +70,30 @@ nav a:hover {
   border-radius: 10px;
 }
 
+#about-me-page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% auto;
+}
+
+@media screen and (max-width: 769px) {
+  #page-body {
+    padding: 72px 25px auto;
+  }
+  #about-me-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #my-image {
+    width: 80%;
+  }
+}
+
 #image-holder {
-  width: 60%;
+  width: 100%;
   aspect-ratio: 3/4;
   display: flex;
   flex-direction: column;
@@ -133,6 +159,6 @@ input, textarea {
 
 /*---------------------------------------------------------------*/
 /* Responsive Design */
-#page-body {
+/* #page-body {
   padding: 0 5%;
-}
+} */
