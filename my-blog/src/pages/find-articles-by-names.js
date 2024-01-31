@@ -7,7 +7,7 @@ const FindArticles = () => {
     // Get the name to find
     const { articleName } = useParams();
 
-    const articleFound = articles.filter(article => article.name.includes(articleName));
+    const articleFound = articles.filter(article => article.title.includes(articleName));
 
     return (
         <>
