@@ -40,8 +40,7 @@ app.use(async (req, res, next) => {
     next();
 });
 
-// app.get('/api/articles')
-
+// get article by name 
 app.get('/api/articles/:name', async (req, res) => {
     const { name } = req.params;
     const { uid } = req.user;
@@ -65,6 +64,7 @@ app.use((req, res, next) => {
     }
 });
 
+// Updates upvote for specific articles
 app.put('/api/articles/:name/upvote', async (req, res) => {
     const { name } = req.params;
     const { uid } = req.user;
@@ -89,6 +89,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
     }
 });
 
+// Add comment for specific articles
 app.post('/api/articles/:name/comments', async (req, res) => {
     const { name } = req.params;
     const { text } = req.body;
@@ -97,6 +98,7 @@ app.post('/api/articles/:name/comments', async (req, res) => {
     await db.collection('articles').updateOne({ name }, {
         $push: { comments: { postedBy: email, text } },
     });
+
     const article = await db.collection('articles').findOne({ name });
 
     if (article) {
