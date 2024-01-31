@@ -7,11 +7,15 @@ const FindArticles = () => {
     // Get the name to find
     const { articleName } = useParams();
 
-    const articleFound = articles.filter(article => article.title.includes(articleName));
+    // Get the lowercase of the finding word
+    const articleNameLower = articleName.toLowerCase();
+
+    // converting to Lowecase will helping Searching tool to reconize article containing "Re" same as "re"
+    const articleFound = articles.filter(article => article.title.toLowerCase().includes(articleNameLower));
 
     return (
         <>
-            <h1>Article with name containing "{articleName}"</h1>
+            <h1>Articles with titles containing "{articleName}"</h1>
             {articleFound.length !== 0 ? (
                 <ArticleList articles={articleFound} />
             ) : (
