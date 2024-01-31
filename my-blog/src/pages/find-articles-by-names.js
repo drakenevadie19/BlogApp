@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import articles from "./article-content";
 import ArticleList from "../components/articles-list";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NotFoundPage from "./not-found-page";
 
 const FindArticles = () => {
@@ -13,7 +11,7 @@ const FindArticles = () => {
 
     return (
         <>
-            <h1>Article with name "{articleName}"</h1>
+            <h1>Article with name containing "{articleName}"</h1>
             {articleFound.length !== 0 ? (
                 <ArticleList articles={articleFound} />
             ) : (

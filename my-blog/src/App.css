@@ -24,9 +24,6 @@ h3, h4 {
 nav {
   border-bottom: 4px solid black;
   text-align:start;
-  /* position: fixed;
-  top: 0;
-  width: 100%; */
   background: white;
 }
 
@@ -38,8 +35,17 @@ nav ul {
 
 nav li {
   display: inline-block;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.find-article {
+  padding-left: 10px;
+}
+
+.search-now {
+  display: flex;
+  gap: 15px;
 }
 
 nav a {
@@ -52,6 +58,11 @@ nav a {
 nav a:hover {
   background: black;
   color: white;
+}
+
+form {
+  display: flex;
+  gap: 5px;
 }
 
 #page-body {
@@ -77,6 +88,10 @@ nav a:hover {
 }
 
 @media screen and (max-width: 769px) {
+  .search-word {
+    display: none;
+  }
+
   #page-body {
     padding: 72px 25px auto;
   }
