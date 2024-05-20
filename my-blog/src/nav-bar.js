@@ -9,6 +9,7 @@ import { useState } from 'react';
 const Navbar = () => {
     const [toFind, setToFind] = useState("No Thing"); 
     const {user} = useUser();
+    const [pageRendering, setPageRendering] = useState(1);
 
     const navigate = useNavigate();
 
@@ -24,13 +25,13 @@ const Navbar = () => {
         <nav>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/" onClick={() => setPageRendering(1)} className={`${pageRendering === 1 ? 'clicked' : ''}`}>Home</Link>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <Link to="/about" onClick={() => setPageRendering(2)} className={`${pageRendering === 2 ? 'clicked' : ''}`}>About</Link>
                 </li>
                 <li>
-                    <Link to="/articles">Article</Link>
+                    <Link to="/articles" onClick={setPageRendering(3)} className={`${pageRendering === 3 ? 'clicked' : ''}`}>Article</Link>
                 </li>
             
                 <li>

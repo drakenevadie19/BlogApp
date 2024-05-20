@@ -60,6 +60,10 @@ nav a:hover {
   color: white;
 }
 
+nav .clicked {
+  background-color: black;
+  color: white;
+}
 form {
   display: flex;
   gap: 5px;
