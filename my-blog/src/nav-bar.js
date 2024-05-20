@@ -31,7 +31,7 @@ const Navbar = () => {
                     <Link to="/about" onClick={() => setPageRendering(2)} className={`${pageRendering === 2 ? 'clicked' : ''}`}>About</Link>
                 </li>
                 <li>
-                    <Link to="/articles" onClick={setPageRendering(3)} className={`${pageRendering === 3 ? 'clicked' : ''}`}>Article</Link>
+                    <Link to="/articles" onClick={() => setPageRendering(3)} className={`${pageRendering === 3 ? 'clicked' : ''}`}>Article</Link>
                 </li>
             
                 <li>
