@@ -1,6 +1,6 @@
 # BlogApp
 - Responsibility
-  - Architectured a responsive design web blog application user interface allowing users to save memories and articles using React, combined with pure HTML, CSS, and JavaScript and Bootstrap 5.
+  - Architectured a responsive design web blog application user interface allowing users to save memories and articles using React, combined with pure HTML, CSS, JavaScript and Bootstrap 5.
   - Developed a back-end service using Node.js and Express.js to post and retrieve articles from the MongoDB database.
   - Managed users' account actions such as signing in, signing out, and states using Firebase Authentication.
 
@@ -12,4 +12,4 @@
   - API: Restful API, Postman.
   - Axios: Connecting Front-end and Back-end sides.
   - Authentication: Firebase Auth.
-  - Google Cloud Platform (GCP) for hosting the whole website.
+  - Heroku for deploying and hosting the whole website.
