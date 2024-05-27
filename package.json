@@ -3,5 +3,11 @@
     "axios": "^1.6.2",
     "dotenv": "^16.4.5",
     "mongodb": "^6.3.0"
+  },
+  "scripts": {
+    "my-blog": "cd my-blog && npm start",
+    "my-blog-backend": "cd my-blog-backend && nodemon src/server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run my-blog-backend\" \"npm run my-blog\"",
+    "heroku-postbuild": "cd my-blog && npm install && npm run build"
   }
 }

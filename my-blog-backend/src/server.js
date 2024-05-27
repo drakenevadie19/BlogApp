@@ -11,9 +11,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const credentials = JSON.parse(
-    fs.readFileSync('./credentials.json')
-);
+// const credentials = JSON.parse(
+//     fs.readFileSync('./credentials.json')
+// );
 
 // console.log("This is credential");
 // console.log(credentialInfo);
