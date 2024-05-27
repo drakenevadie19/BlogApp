@@ -1,1 +1,1 @@
-web nodemon src/server.js
+web nodemon my-blog-backend/src/server.js
