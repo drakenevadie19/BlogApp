@@ -5,6 +5,8 @@ import express from 'express';
 import 'dotenv/config';
 import { db, connectToDB } from './db.js';
 
+import credentialInfo from './credential.js';
+
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,8 +14,12 @@ const __dirname = path.dirname(__filename);
 const credentials = JSON.parse(
     fs.readFileSync('./credentials.json')
 );
+
+// console.log("This is credential");
+// console.log(credentialInfo);
+
 admin.initializeApp({
-    credential: admin.credential.cert(credentials),
+    credential: admin.credential.cert(credentialInfo),
 });
 
 const app = express();

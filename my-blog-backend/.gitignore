@@ -1,8 +1,8 @@
 /node_modules
-/mongodb-data
+mongodb-data/
 credentials.json
+previous.txt
 
-.previous.txt
-/build
-
+# Ignore .env file
+# Already use git rm .env --cached to stop tracking .env file
 .env

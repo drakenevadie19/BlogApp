@@ -8,7 +8,8 @@ const AboutPage = () => {
             <div id="about-me-page">
                 <div id="main-info">
                     <div id="education">
-                        <h1>Education</h1>
+                        <h1>Thanh Nguyen (Drake) Do</h1>
+                        <h2>Education</h2>
                         <details>
                             <summary>Tran Phu Highschool for the gifted - Class of 2021</summary>
                             <ul>
@@ -26,7 +27,7 @@ const AboutPage = () => {
                     </div>
 
                     <div id="experience">
-                        <h1>Working Experience</h1>
+                        <h2>Working Experience</h2>
                         <details>
                             <summary>TCU Undergraduate Teacher Assistant Aug 2023-present</summary>
                             <ul>
@@ -50,7 +51,7 @@ const AboutPage = () => {
                     </div>
 
                     <div id="extra-curricular-activities">
-                        <h1>Extracurricular Activities</h1>
+                        <h2>Extracurricular Activities</h2>
                         <details>
                             <summary>Mary Cout Burnett Library - IC Desk Assistant</summary>
                             <p>Deals with the students' demands of studying devices.</p>
