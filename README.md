@@ -6,10 +6,5 @@
 
 - Tech stacks:
   - Programming Language: JavaScript
-  - Front-end: React.js, Bootstrap 5, HTML, CSS.
-  - Backe-end: Express.js, Node.js.
-  - Database: MongoDB, MongoDB Atlas service for hosting Database.
-  - API: Restful API, Postman.
-  - Axios: Connecting Front-end and Back-end sides.
-  - Authentication: Firebase Auth.
-  - Heroku for deploying and hosting the whole website.
+  - Front-end: React.js, Bootstrap 5, HTML, CSS, axios, Firebase.
+  - Back-end: Express.js, Node.js, MongoDB, MongoDB Atlas, RESTful API, Postman.
