@@ -1,7 +1,7 @@
 const AboutPage = () => {
     const goTo = () => {
         // window.location.href="https://thanh-nguyen-do-portfolio.vercel.app/";
-        window.open("https://thanh-nguyen-do-portfolio.vercel.app/", "_blank")
+        window.open("https://thanh-nguyen-do.vercel.app/", "_blank")
      }
     return (
         <>
@@ -28,14 +28,37 @@ const AboutPage = () => {
 
                     <div id="experience">
                         <h2>Working Experience</h2>
-                        <details>
-                            <summary>TCU Undergraduate Teacher Assistant Aug 2023-present</summary>
+                        
+                        <ul>
+                            <li>TCU Undergraduate Computer Science Teacher Assistant</li>
+                            <li>TCU Undergraduate Mathematics Teacher Assistant Aug 2023-present</li>
+                            <li>SWE Internship @FPT Software</li>
+                            <li>SWE Fellowship @Headstarter AI</li>
+                            <li>FullStack Developer Internship @ThankUPet</li>
+                            <li>Student FullStack Developer @CodePath</li>
+                            <li>FullStack SWE Internship @UNT HSC</li>
+                        </ul>
+                        {/* <details>
+                            <summary>TCU Undergraduate Computer Science Teacher Assistant</summary>
                             <ul>
                                 <li>Assist over 50 students with lab projects in Computer Science courses: Data Structures,
                                 Techniques in Programming, Python for Data Analytics, and Introduction to Programming.</li>
                                 <li>Improve students' programming proficiency and exam performance by 35% through tailored
                                 teaching methods customized for each student's learning style and skill level.</li>
                                 <li>Host weekly 4-hour Computer Science Help Desk session.</li>
+                            </ul>
+                        </details>
+                        <details>
+                            <summary>TCU Undergraduate Mathematics Teacher Assistant Aug 2023-present</summary>
+                            <ul>
+                                <li>Manage and improve homework performance of about 30 students in Mathematics classes.</li>
+                                <li>Developed detailed study guides for math and computer science courses and aided a robust understanding of key concepts.</li>
+                                <li>Class Graded:</li>
+                                <ul>
+                                    <li>MATH 20123: Discrete Mathematics I (Dr. Emily Herzig)</li>
+                                    <li>MATH 30123: Discrete Mathematics II (Dr. Emily Herzig)</li>
+                                    <li>MATH 30123: Discrete Mathematics II (Dr. Dou Ze-li)</li>
+                                </ul>
                             </ul>
                         </details>
                         <details>
@@ -47,7 +70,7 @@ const AboutPage = () => {
                                 and mails by harnessing existing APIs of <strong>Django</strong> and <strong>Python</strong>.</li>
                                 <li>Worked in a team, using <strong>Agile</strong> development methodologies to efficiently plan, develop, and test the application.</li>
                             </ul>
-                        </details>
+                        </details> */}
                     </div>
 
                     <div id="extra-curricular-activities">
