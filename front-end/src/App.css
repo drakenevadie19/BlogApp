@@ -3,6 +3,12 @@ body {
   font-size: 18px;
 }
 
+.App {
+  width: 100%;
+  height: max-content;
+  /* background-color: green; */
+}
+
 button {
   padding: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,6 +17,7 @@ button {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  margin: 0;
 }
 
 button:hover {
@@ -22,9 +29,19 @@ h3, h4 {
 }
 
 nav {
+  width: 100%;
   border-bottom: 4px solid black;
-  text-align:start;
-  background: white;
+  background-color: white;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
 }
 
 nav ul {
@@ -70,7 +87,7 @@ form {
 }
 
 #page-body {
-  max-width: 1000px;
+  width: 75%;
   margin: auto;
   padding-top: 72px;
 }
@@ -91,24 +108,8 @@ form {
   grid-template-columns: 70% auto;
 }
 
-@media screen and (max-width: 769px) {
-  .search-word {
-    display: none;
-  }
-
-  #page-body {
-    padding: 72px 25px auto;
-  }
-  #about-me-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  #my-image {
-    width: 80%;
-  }
+.home-page {
+  width: 100%;
 }
 
 #image-holder {
@@ -132,7 +133,7 @@ form {
 
 #add-comment-form {
   border-bottom: 2px solid black;
-  padding: 16px;
+  padding-bottom: 16px;
 }
 
 #add-comment-form h3 {
@@ -150,6 +151,11 @@ input, textarea {
   margin-bottom: 16px;
 }
 
+.article-title {
+  font-size: 2em;
+  margin: 0;
+}
+
 .error {
   padding: 8px;
   border-radius: 4px;
@@ -160,9 +166,16 @@ input, textarea {
   width: 320px;
 }
 
-#upvotes-section button, p {
+.upvotes-section button, p {
   display: inline-block;
-  margin-right: 16px;
+  /* margin-right: 16px; */
+}
+
+.upvotes-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .comment {
@@ -171,13 +184,38 @@ input, textarea {
 }
 
 .nav-right {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  width: max-content;
 }
 
 /*---------------------------------------------------------------*/
 /* Responsive Design */
-/* #page-body {
-  padding: 0 5%;
-} */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  #page-body {
+    padding: 5%;
+    width: 90%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media screen and (max-width: 769px) {
+  .search-word {
+    display: none;
+  }
+
+  #page-body {
+    /* padding: 72px 25px auto; */
+    padding: 5%;
+    width: 90%;
+  }
+  #about-me-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #my-image {
+    width: 80%;
+  }
+}

@@ -6,8 +6,8 @@
     "mongodb": "^6.3.0"
   },
   "scripts": {
-    "frontend": "cd my-blog && npm start",
-    "backend": "cd my-blog-backend && npx nodemon src/server.js",
+    "frontend": "cd front-end && npm run start",
+    "backend": "cd back-end && npx nodemon src/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\""
   }
 }

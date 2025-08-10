@@ -55,26 +55,48 @@ const ArticlePage = () => {
     console.log(isLoading);
     return (
         <>
-        <h1>{article.title}</h1>
-        <div className="upvotes-section">
-            {user != null
-                ? <button onClick={addUpvote}>{canUpvote ? 'Upvote' : 'Already Upvoted'}</button>
-                : <button onClick={() => {
-                    navigate('/login');
-                }}>Log in to upvote</button>}
-            <p>This article has {articleInfo.upvotes} upvote(s)</p>
-        </div>
-        {article.content.map((paragraph, i) => (
+            <h1 className="article-title">{article.title}</h1>
+
+            {article.content.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
-        ))}
-        {user != null
-            ? <CommentsForm
+            ))}
+
+            {/* Upvote section */}
+            <div className="upvotes-section">
+            {user != null ? (
+                <button onClick={addUpvote}>
+                {canUpvote ? "Upvote" : "Already Upvoted"}
+                </button>
+            ) : (
+                <button
+                onClick={() => {
+                    navigate("/login");
+                }}
+                >
+                Log in to upvote
+                </button>
+            )}
+            <p>This article has {articleInfo.upvotes} upvote(s)</p>
+            </div>
+
+            {/* Comments section */}
+            {user != null ? (
+            <CommentsForm
                 articleName={articleId}
-                onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)} />
-            : <button onClick={() => {
-                navigate('/login');
-            }}>Log in to add a comment</button>}
-        <CommentsList comments={articleInfo.comments} />
+                onArticleUpdated={(updatedArticle) =>
+                setArticleInfo(updatedArticle)
+                }
+            />
+            ) : (
+            <button
+                onClick={() => {
+                navigate("/login");
+                }}
+            >
+                Log in to add a comment
+            </button>
+            )}
+            <CommentsList comments={articleInfo.comments} />
         </>
     );
 }
