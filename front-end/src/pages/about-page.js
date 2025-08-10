@@ -102,7 +102,7 @@ const AboutPage = () => {
 
                 <div id="my-image">
                     <div id="image-holder">
-                        <img class="image" src="./author.jpg" alt="" />
+                        <img className="image" src="./author.jpg" alt="" />
                         <button onClick={goTo} className="goto-portfolio-button">Go to my portfolio app</button>
                     </div>
                 </div>

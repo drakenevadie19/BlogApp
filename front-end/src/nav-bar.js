@@ -13,30 +13,32 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     return (
-        <nav>
-            <ul className='nav-bar'>
-                <li>
-                    <Link to="/" onClick={() => setPageRendering(1)} className={`${pageRendering === 1 ? 'clicked' : ''}`}>Home</Link>
-                </li>
-                <li>
-                    <Link to="/about" onClick={() => setPageRendering(2)} className={`${pageRendering === 2 ? 'clicked' : ''}`}>About</Link>
-                </li>
-                <li>
-                    <Link to="/articles" onClick={() => setPageRendering(3)} className={`${pageRendering === 3 ? 'clicked' : ''}`}>Article</Link>
-                </li>
-            </ul>
+        <div className='navbar-wrapper'>
+            <nav>
+                <ul className='nav-bar'>
+                    <li>
+                        <Link to="/" onClick={() => setPageRendering(1)} className={`${pageRendering === 1 ? 'clicked' : ''}`}>Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/articles" onClick={() => setPageRendering(3)} className={`${pageRendering === 3 ? 'clicked' : ''}`}>Article</Link>
+                    </li>
+                    <li>
+                        <Link to="/about" onClick={() => setPageRendering(2)} className={`${pageRendering === 2 ? 'clicked' : ''}`}>About Me</Link>
+                    </li>
+                </ul>
 
-            <div className='nav-right'>
-                {user
-                    ? <button onClick={ () => {
-                        signOut(getAuth());
-                    }}>Log Out</button>
-                    : <button onClick={() => {
-                        navigate('/login');
-                    }}>Log In</button>
-                }
-            </div>
-        </nav>
+                <div className='nav-right'>
+                    {user
+                        ? <button onClick={ () => {
+                            signOut(getAuth());
+                        }}>Log Out</button>
+                        : <button onClick={() => {
+                            navigate('/login');
+                        }}>Log In</button>
+                    }
+                </div>
+            </nav>
+        </div>
     );
 }
 
