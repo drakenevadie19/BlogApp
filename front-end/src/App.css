@@ -37,11 +37,14 @@ h3, h4 {
 
 nav {
   width: 100%;
+  height: max-content;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  position: static;
 }
 
 .nav-bar {
@@ -67,7 +70,8 @@ nav a {
   text-decoration: none;
   color: black;
   font-weight: bold;
-  padding: 24px 32px;
+  padding: 21px 32px;
+  height: 100%;
 }
 
 nav a:hover {
@@ -79,6 +83,56 @@ nav .clicked {
   background-color: black;
   color: white;
 }
+
+.profile-wrapper {
+  height: 50px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: row;
+  /* gap: 10px; */
+  align-items: center;
+}
+
+.profile-name {
+  font-weight: 400;
+}
+
+.profile-image {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover
+}
+
+.log-in-button {
+  background-color: green;
+}
+
+.log-out-button {
+  background-color: red;
+}
+.hidden-user-tab {
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.white-panel {
+  background-color: white;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 form {
   display: flex;
   gap: 5px;
@@ -225,5 +279,9 @@ input, textarea {
 
   #my-image {
     width: 80%;
+  }
+
+  .profile-name {
+    display: none;
   }
 }

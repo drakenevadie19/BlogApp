@@ -1,11 +1,11 @@
 const HomePage = () => (
   <div className="home-page">
     <h1>
-      Welcome to our innovative blog app designed with efficiency in mind!
+      Welcome to MindBloom!
     </h1>
-    <div className="home-image-holder">
+    {/* <div className="home-image-holder">
       <img src="./blog.png" alt="" />
-    </div>
+    </div> */}
     <p>
       Say goodbye to cluttered bookmarks and overloaded memory; our app is
       meticulously crafted to streamline your reading experience while
