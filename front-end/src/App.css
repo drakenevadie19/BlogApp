@@ -12,7 +12,7 @@ body {
 button {
   padding: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   background-color: black;
   color: white;
   border-radius: 8px;
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-  background-color: red;
+  background-color: cadetblue;
 }
 
 h3, h4 {
@@ -131,17 +131,53 @@ nav .clicked {
   display: flex;
   flex-direction: column;
 }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* Article List Page Container */
+.article-list-page-container {
+  width: 100%;
+  height: max-content;
+  /* background-color: red; */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.find-icon {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 0;
+}
+
+.find-icon:hover {
+  background-color: turquoise;
+}
+
+.search-now {
+  background-color: cyan;
+  color: black;
+}
+
+.find-article-cancel {
+  background-color: red;
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 form {
   display: flex;
+  flex-direction: row;
+  
   gap: 5px;
+  margin: 0;
+  font-size: 15px;
 }
 
 #page-body {
   width: 75%;
   margin: auto;
-  padding-top: 72px;
+  padding-top: 2%;
 }
 
 .home-image-holder {
@@ -170,26 +206,6 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.article-list-item {
-  text-decoration: none;
-  color: black;
-  padding: 16px 0 0 0;
-}
-
-.article-list-item p {
-  padding-bottom: 32px;
-  border-bottom: 2px solid black;
-}
-
-.find-article {
-  padding-left: 10px;
-}
-
-.search-now {
-  display: flex;
-  gap: 15px;
 }
 
 #add-comment-form {
@@ -247,6 +263,63 @@ input, textarea {
 .nav-right {
   width: max-content;
   margin-right: 7px;
+}
+
+/*-----------------------------------------------------------*/
+/* Find article result page */
+.find-articles-resule-page {
+  width: 100%;
+  height: max-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.find-articles-back-button-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.find-articles-back-button {
+  background-color: red;
+}
+
+.find-articles-title {
+  margin: 0
+}
+
+.find-article {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.form-control {
+  margin: 0;
+  line-height: 15px;
+}
+
+.find-article-bar-button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.article-list-item {
+  text-decoration: none;
+  color: black;
+  padding: 0;
+}
+
+.article-list-item p {
+  padding-bottom: 32px;
+  border-bottom: 2px solid black;
 }
 
 /*---------------------------------------------------------------*/
